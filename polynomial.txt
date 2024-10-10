@@ -1,0 +1,61 @@
+class Node:
+    def _init_(self,coeff,expo):
+        self.coeff=coeff
+        self.expo=expo
+        self.next=None
+
+def add_polynomial(poly1,poly2):
+    result_head=None
+    while poly1 and poly2:
+        if poly1.expo>poly2.expo:
+            result_head=create_polynomial(result_head.poly1.coeff,poly2.expo)
+            poly1=poly2.next
+        elif poly1.expo<poly2.expo:
+            result_head=create_polynomial(result_head,poly2.coeff,poly.expo)
+            poly2=poly2.next
+        else:
+            sum_coeff=poly1.expo+poly2.expo
+            if sum_coeff:
+                result_head=create_polynomial(result_head,sum_coeff,poly1.expo)
+            poly1=poly1.next
+            poly2=poly2.next
+        while poly1:
+            result_haed=craete_polynomial(result_head,sum_coeff,poly1.expo)
+            poly1=poly1.next
+        while poly2:
+            result_haed=craete_polynomial(result_head,sum_coeff,poly1.expo)
+            poly2=poly2.next
+        return result_head
+def create_polynomial():
+     head=None
+     n=int(input("enter no of terms:"))
+     co=float(input("enter coefficent:"))
+     ex=int(input("enter exponent:"))
+     for i in range(n):
+        newnode=Node(co,ex)
+        if head is None or ex>head.expo:
+            newnode.next=head
+            head=newnode
+        else:
+            temp=head
+            while temp.next is not None and temp.next.expo>=ex:
+                temp=temp.next
+                newnode=temp.next
+                temp.next=newnode
+     return head
+                
+def display_polynomial(head):
+        if head is None:
+            print("no polyanomial")
+        else:
+            temp=head
+        while temp is not None:
+            print(f"({temp.coeff}x^{temp.expo})",end=" ")
+            temp=temp.next
+            if temp is not None:
+                print("+",end=" ")
+            else:
+                 print()
+obj=create_polynomial()
+display_polynomial(obj)
+obj.add_polynomial(poly1,poly2)
